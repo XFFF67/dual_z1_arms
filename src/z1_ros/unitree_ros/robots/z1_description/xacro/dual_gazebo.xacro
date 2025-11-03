@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<robot>
+    <gazebo>
+        <plugin name="gazebo_ros_control_a" filename="libgazebo_ros_control.so">
+            <robotNamespace>/z1_a_gazebo</robotNamespace>
+            <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+        </plugin>
+    </gazebo>
+
+    <gazebo>
+        <plugin name="gazebo_ros_control_b" filename="libgazebo_ros_control.so">
+            <robotNamespace>/z1_b_gazebo</robotNamespace>
+            <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+        </plugin>
+    </gazebo>
+
+    <gazebo reference="link04_a">
+        <self_collide>true</self_collide>
+    </gazebo>
+
+    <gazebo reference="link05_a">
+        <self_collide>true</self_collide>
+    </gazebo>
+
+    <gazebo reference="link06_a">
+        <self_collide>true</self_collide>
+    </gazebo>
+
+    <gazebo reference="link04_b">
+        <self_collide>true</self_collide>
+    </gazebo>
+
+    <gazebo reference="link05_b">
+        <self_collide>true</self_collide>
+    </gazebo>
+
+    <gazebo reference="link06_b">
+        <self_collide>true</self_collide>
+    </gazebo>
+</robot>

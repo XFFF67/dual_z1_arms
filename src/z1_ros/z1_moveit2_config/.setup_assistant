@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: z1_description
+    relative_path: xacro/robot.xacro
+    xacro_args: UnitreeGripper:=true
+  SRDF:
+    relative_path: config/z1_description.srdf
+  CONFIG:
+    author_name: mizu
+    author_email: y3037416857@outlook.com
+    generated_timestamp: 1749707836

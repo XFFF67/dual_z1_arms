@@ -1,0 +1,59 @@
+joint_state_controller:
+  type:         joint_state_controller/JointStateController
+  publish_rate: 200
+
+z1_a_joint_traj_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+    - joint1_a
+    - joint2_a
+    - joint3_a
+    - joint4_a
+    - joint5_a
+    - joint6_a
+  stop_trajectory_duration: 0.5
+  state_publish_rate: 200
+  action_monitor_rate: 200
+
+  constraints:
+    goal_time: 0.5
+    joint1_a:
+      goal: 0.01
+    joint2_a:
+      goal: 0.01
+    joint3_a:
+      goal: 0.01
+    joint4_a:
+      goal: 0.01
+    joint5_a:
+      goal: 0.01
+    joint6_a:
+      goal: 0.01
+
+z1_b_joint_traj_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+    - joint1_b
+    - joint2_b
+    - joint3_b
+    - joint4_b
+    - joint5_b
+    - joint6_b
+  stop_trajectory_duration: 0.5
+  state_publish_rate: 200
+  action_monitor_rate: 200
+
+  constraints:
+    goal_time: 0.5
+    joint1_b:
+      goal: 0.01
+    joint2_b:
+      goal: 0.01
+    joint3_b:
+      goal: 0.01
+    joint4_b:
+      goal: 0.01
+    joint5_b:
+      goal: 0.01
+    joint6_b:
+      goal: 0.01

@@ -1,0 +1,81 @@
+z1_a_gazebo:
+    # Publish all joint states -----------------------------------
+    joint_state_controller:
+        type: joint_state_controller/JointStateController
+        publish_rate: 1000  
+
+    Joint01_controller_a:
+        type: unitree_legged_control/UnitreeJointController
+        joint: joint1_a
+        pid: {p: 300.0, i: 0.0, d: 5.0}
+
+    Joint02_controller_a:
+        type: unitree_legged_control/UnitreeJointController
+        joint: joint2_a
+        pid: {p: 300.0, i: 0.0, d: 5.0}
+
+    Joint03_controller_a:
+        type: unitree_legged_control/UnitreeJointController
+        joint: joint3_a
+        pid: {p: 300.0, i: 0.0, d: 5.0}
+
+    Joint04_controller_a:
+        type: unitree_legged_control/UnitreeJointController
+        joint: joint4_a
+        pid: {p: 300.0, i: 0.0, d: 5.0}
+
+    Joint05_controller_a:
+        type: unitree_legged_control/UnitreeJointController
+        joint: joint5_a
+        pid: {p: 300.0, i: 0.0, d: 5.0}
+
+    Joint06_controller_a:
+        type: unitree_legged_control/UnitreeJointController
+        joint: joint6_a
+        pid: {p: 300.0, i: 0.0, d: 5.0}
+
+    gripper_controller_a:
+        type: unitree_legged_control/UnitreeJointController
+        joint: jointGripper_a
+        pid: {p: 300.0, i: 0.0, d: 5.0}
+
+z1_b_gazebo:
+    # Publish all joint states -----------------------------------
+    joint_state_controller:
+        type: joint_state_controller/JointStateController
+        publish_rate: 1000  
+
+    Joint01_controller_b:
+        type: unitree_legged_control/UnitreeJointController
+        joint: joint1_b
+        pid: {p: 300.0, i: 0.0, d: 5.0}
+
+    Joint02_controller_b:
+        type: unitree_legged_control/UnitreeJointController
+        joint: joint2_b
+        pid: {p: 300.0, i: 0.0, d: 5.0}
+
+    Joint03_controller_b:
+        type: unitree_legged_control/UnitreeJointController
+        joint: joint3_b
+        pid: {p: 300.0, i: 0.0, d: 5.0}
+
+    Joint04_controller_b:
+        type: unitree_legged_control/UnitreeJointController
+        joint: joint4_b
+        pid: {p: 300.0, i: 0.0, d: 5.0}
+
+    Joint05_controller_b:
+        type: unitree_legged_control/UnitreeJointController
+        joint: joint5_b
+        pid: {p: 300.0, i: 0.0, d: 5.0}
+
+    Joint06_controller_b:
+        type: unitree_legged_control/UnitreeJointController
+        joint: joint6_b
+        pid: {p: 300.0, i: 0.0, d: 5.0}
+
+    gripper_controller_b:
+        type: unitree_legged_control/UnitreeJointController
+        joint: jointGripper_b
+        pid: {p: 300.0, i: 0.0, d: 5.0}

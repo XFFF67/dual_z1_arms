@@ -1,0 +1,19 @@
+<launch>
+  <arg name="UnitreeGripperYN" default="true"/>
+
+  <include file="$(find unitree_gazebo)/launch/dual_z1.launch">
+    <arg name="UnitreeGripperYN" value="$(arg UnitreeGripperYN)"/>
+  </include>
+
+  <node pkg="z1_controller" type="z1_ctrl" name="z1_ctrl_a" output="screen">
+    <param name="communication" value="ROS"/>
+    <param name="UnitreeGripperYN" value="$(arg UnitreeGripperYN)"/>
+    <rosparam file="$(find z1_controller)/config/config_a.yaml"/>
+  </node>
+
+  <node pkg="z1_controller" type="z1_ctrl" name="z1_ctrl_b" output="screen">
+    <param name="communication" value="ROS"/>
+    <param name="UnitreeGripperYN" value="$(arg UnitreeGripperYN)"/>
+    <rosparam file="$(find z1_controller)/config/config_b.yaml"/>
+  </node>
+</launch>

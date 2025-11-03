@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC  -O3 -std=c++14 -DNDEBUG -fPIC -pthread  -shared -Wl,-soname,libunitree_arm_sdk.so -o /home/xfff67/Unitree-Z1_SDK/z1_moveit_ws/src/z1_ros/z1_sdk/lib/libunitree_arm_sdk.so CMakeFiles/unitree_arm_sdk.dir/src/UdpPort.cpp.o 

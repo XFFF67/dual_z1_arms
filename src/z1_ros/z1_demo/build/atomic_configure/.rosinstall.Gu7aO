@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/xfff67/Unitree-Z1_SDK/z1_moveit_ws/src/z1_ros/z1_demo/build/devel/setup.sh

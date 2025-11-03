@@ -1,0 +1,4 @@
+修改了dual_z1_moveit_config/config文件夹下的fake_controllers.yaml和z1_description.srdf和kinematics.yaml和ompl_planning.yaml
+
+新增了unitree_ros/robots/z1_description/xacro文件夹下的dual_robots.xacro
+

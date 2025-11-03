@@ -1,0 +1,53 @@
+controller_list:
+  - name: fake_manipulator_controller_a
+    type: $(arg fake_execution_type)
+    joints:
+      - joint1_a
+      - joint2_a
+      - joint3_a
+      - joint4_a
+      - joint5_a
+      - joint6_a
+  - name: fake_manipulator_controller_b
+    type: $(arg fake_execution_type)
+    joints:
+      - joint1_b
+      - joint2_b
+      - joint3_b
+      - joint4_b
+      - joint5_b
+      - joint6_b
+  - name: fake_dual_manipulator_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - joint1_a
+      - joint2_a
+      - joint3_a
+      - joint4_a
+      - joint5_a
+      - joint6_a
+      - joint1_b
+      - joint2_b
+      - joint3_b
+      - joint4_b
+      - joint5_b
+      - joint6_b
+  - name: fake_gripper_controller_a
+    type: $(arg fake_execution_type)
+    joints:
+      - jointGripper_a
+  - name: fake_gripper_controller_b
+    type: $(arg fake_execution_type)
+    joints:
+      - jointGripper_b
+initial:
+  - group: manipulator_a
+    pose: home_a
+  - group: manipulator_b  
+    pose: home_b
+  - group: dual_arms  
+    pose: home
+  - group: gripper_a
+    pose: open_a
+  - group: gripper_b
+    pose: open_b

@@ -1,0 +1,8 @@
+prefix=/home/xfff67/Unitree-Z1_SDK/z1_moveit_ws/devel
+
+Name: z1_sdk
+Description: Description of z1_sdk
+Version: 0.1.0
+Cflags: -I/home/xfff67/Unitree-Z1_SDK/z1_moveit_ws/src/z1_ros/z1_sdk/include
+Libs: -L${prefix}/lib /home/xfff67/Unitree-Z1_SDK/z1_moveit_ws/src/z1_ros/z1_sdk/lib/libunitree_arm_sdk.so
+Requires: 

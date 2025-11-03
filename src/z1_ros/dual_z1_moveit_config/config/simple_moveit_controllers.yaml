@@ -1,0 +1,35 @@
+controller_list:
+  - name: manipulator_a_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - joint1_a
+      - joint2_a
+      - joint3_a
+      - joint4_a
+      - joint5_a
+      - joint6_a
+  - name: gripper_a_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - jointGripper_a
+  - name: manipulator_b_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - joint1_b
+      - joint2_b
+      - joint3_b
+      - joint4_b
+      - joint5_b
+      - joint6_b
+  - name: gripper_b_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - jointGripper_b

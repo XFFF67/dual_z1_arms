@@ -1,0 +1,1 @@
+/usr/bin/c++   -O3 -std=c++14 -DNDEBUG -fPIC -pthread  -rdynamic CMakeFiles/example_joint_ctrl.dir/examples/example_joint_ctrl.cpp.o  -o /home/xfff67/Unitree-Z1_SDK/z1_moveit_ws/devel/lib/z1_sdk/example_joint_ctrl  -Wl,-rpath,/home/xfff67/Unitree-Z1_SDK/z1_moveit_ws/src/z1_ros/z1_sdk/lib /home/xfff67/Unitree-Z1_SDK/z1_moveit_ws/src/z1_ros/z1_sdk/lib/libunitree_arm_sdk.so 

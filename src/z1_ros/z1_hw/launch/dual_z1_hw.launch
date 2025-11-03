@@ -1,0 +1,24 @@
+<launch>
+  <arg name="UnitreeGripper" default="true"/>
+  <arg name="controllers" default="joint_state_controller z1_a_joint_traj_controller z1_b_joint_traj_controller" />
+
+  <rosparam file="$(find z1_hw)/config/dual_arms_controllers.yaml" command="load"/>
+  
+  <node name="ros_control_controller_spawner" pkg="controller_manager" type="spawner" 
+    respawn="false" output="screen" args="$(arg controllers)"/>
+
+  <node type="z1_hw_node" pkg="z1_hw" name="z1_a_hw_node" output="screen">
+    <param name="UnitreeGripperYN" value="$(arg UnitreeGripper)"/>
+    <param name="arm_name" value="z1_a"/>
+    <rosparam file="$(find z1_controller)/config/config_a.yaml"/>
+    <rosparam file="$(find z1_hw)/config/config_a.yaml"/>
+  </node>
+
+  <node type="z1_hw_node" pkg="z1_hw" name="z1_b_hw_node" output="screen">
+    <param name="UnitreeGripperYN" value="$(arg UnitreeGripper)"/>
+    <param name="arm_name" value="z1_b"/>
+    <rosparam file="$(find z1_controller)/config/config_b.yaml"/>
+    <rosparam file="$(find z1_hw)/config/config_b.yaml"/>
+  </node>
+
+</launch>

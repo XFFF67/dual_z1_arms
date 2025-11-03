@@ -1,0 +1,87 @@
+<launch>
+    <arg name="wname" default="earth"/>
+    <arg name="rname" default="z1"/>
+    <arg name="robot_path" value="(find $(arg rname)_description)"/>
+    <arg name="dollar" value="$"/>
+
+    <arg name="paused" default="false"/>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="gui" default="true"/>
+    <arg name="headless" default="false"/>
+    <arg name="debug" default="false"/>
+    <arg name="user_debug" default="false"/>
+    <arg name="UnitreeGripperYN" default="true"/>
+
+    <arg name="dual_arms" default="true"/>
+    <arg name="arm_a_name" default="z1_a"/>
+    <arg name="arm_b_name" default="z1_b"/>
+
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(find unitree_gazebo)/worlds/$(arg wname).world"/>
+        <arg name="debug" value="$(arg debug)"/>
+        <arg name="gui" value="$(arg gui)"/>
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+        <arg name="headless" value="$(arg headless)"/>
+    </include>
+
+    <!-- Load the URDF into the ROS Parameter Server -->
+    <param name="robot_description"
+           command="$(find xacro)/xacro --inorder '$(arg dollar)$(arg robot_path)/xacro/dual_robots.xacro'
+           UnitreeGripper:=$(arg UnitreeGripperYN)
+           dual_arms:=$(arg dual_arms)
+           arm_a_name:=$(arg arm_a_name)
+           arm_b_name:=$(arg arm_b_name)"/>
+
+    <!-- Run a python script to the send a service call to gazebo_ros to spawn a URDF robot -->
+    <!-- Set trunk and joint positions at startup -->
+    <node pkg="gazebo_ros" type="spawn_model" name="urdf_spawner" respawn="false" output="screen"
+          args="-urdf -z 0.0 -model $(arg rname)_gazebo -param robot_description -unpause"/>
+
+    <!-- Load joint controller configurations from YAML file to parameter server -->
+    <rosparam file="$(arg dollar)$(arg robot_path)/config/dual_robots_control.yaml" command="load"/>
+
+    <!-- load the controllers -->
+    <group unless="$(arg UnitreeGripperYN)">
+        <node pkg="controller_manager" type="spawner" name="controller_spawner_a" respawn="false"
+            output="screen" ns="/$(arg arm_a_name)_gazebo" args="joint_state_controller 
+            Joint01_controller_a Joint02_controller_a Joint03_controller_a
+            Joint04_controller_a Joint05_controller_a Joint06_controller_a"/>
+              
+        <node pkg="controller_manager" type="spawner" name="controller_spawner_b" respawn="false"
+            output="screen" ns="/$(arg arm_b_name)_gazebo" args="joint_state_controller 
+            Joint01_controller_b Joint02_controller_b Joint03_controller_b
+            Joint04_controller_b Joint05_controller_b Joint06_controller_b"/>
+    </group>
+
+    <group if="$(arg UnitreeGripperYN)">
+        <node pkg="controller_manager" type="spawner" name="controller_spawner_a" respawn="false"
+            output="screen" ns="/$(arg arm_a_name)_gazebo" args="joint_state_controller 
+            Joint01_controller_a Joint02_controller_a Joint03_controller_a
+            Joint04_controller_a Joint05_controller_a Joint06_controller_a
+            gripper_controller_a"/>
+              
+        <node pkg="controller_manager" type="spawner" name="controller_spawner_b" respawn="false"
+            output="screen" ns="/$(arg arm_b_name)_gazebo" args="joint_state_controller 
+            Joint01_controller_b Joint02_controller_b Joint03_controller_b
+            Joint04_controller_b Joint05_controller_b Joint06_controller_b
+            gripper_controller_b"/>
+    </group>
+
+    <node name="joint_state_aggregator" pkg="joint_state_publisher" type="joint_state_publisher">
+        <rosparam param="source_list">
+            - /z1_a_gazebo/joint_states
+            - /z1_b_gazebo/joint_states
+        </rosparam>
+        <param name="rate" value="50"/>
+        <remap from="robot_description" to="/robot_description"/>
+        <remap from="/joint_states" to="/combined_joint_states"/>
+    </node>
+    
+    <!-- convert joint states to TF transforms for rviz, etc -->
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"
+          respawn="false" output="screen">
+        <remap from="/joint_states" to="/combined_joint_states"/>
+    </node>
+
+</launch>
