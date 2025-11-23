@@ -1,8 +1,0 @@
-prefix=/home/xfff67/Unitree-Z1_SDK/z1_moveit_ws/install
-
-Name: z1_bringup
-Description: Description of z1_bringup
-Version: 0.1.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
